@@ -1,14 +1,18 @@
-import org.philhosoft.p8g.svg.P8gGraphicsSVG;
+import geomerative.*;
 
-P8gGraphicsSVG svg;
+RShape shp;
 
 int nPointsToDraw;
+boolean save;
 
 void setup (){
   size(500,500);
   
+  // VERY IMPORTANT: Allways initialize the library before using it
+  RG.init(this);
+  
   nPointsToDraw = 360;
-  svg = (P8gGraphicsSVG) createGraphics(width, height, P8gGraphicsSVG.SVG, "myLissajous.svg");
+  save = false;
 }
 
 void draw(){
@@ -29,25 +33,32 @@ void calculatePointsToDraw(){
     float phaseA = 0;//mouseX/100.0;
     float phaseB = 0;//mouseY/100.0;
     
-    beginShape();
+    RG.beginShape();
+    
+    //calculate points to draw based on lissajous equation
     for (int i=0; i<nPointsToDraw; i++){
       float t = map(i, 0, nPointsToDraw-1, 0, TWO_PI); 
       float x = offsetxScreen + radiusx * cos(phaseA + frequencyA*t);
       float y = offsetyScreen + radiusy * sin(phaseB + frequencyB*t);
-      vertex (x, y);
+      RG.vertex (x, y);
     }
-    endShape();
+    
+    //decide whether to save current shape as svg file or to draw it on screen
+    if(!save) RG.endShape();
+    if(save){
+      shp = RG.getShape();
+      save = false;
+    }
 }
 
 void keyPressed(){
   if (key == 's'){
-    beginRecord(svg);
+    save = true;
     calculatePointsToDraw();
-    svg.endRecord();
+    RG.saveShape("myLissajous.svg", shp);
     println("File saved.");
   }
   else if (key=='q') {
-    svg.clear();
     exit();
   }
 }
