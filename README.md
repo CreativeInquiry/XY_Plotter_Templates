@@ -12,7 +12,7 @@ opensource code for mDrawBot software: https://github.com/Makeblock-official/mDr
 
 rough draft of instructions on how to use.
 
-![xy_setup](https://github.com/CreativeInquiry/XY_Plotter_Templates/tree/master/images/xy_setup.png)
+![xy_setup.png](https://github.com/CreativeInquiry/XY_Plotter_Templates/tree/master/images/xy_setup.png)
 
 Flip switch (what is this switch) to right to manually home
 
