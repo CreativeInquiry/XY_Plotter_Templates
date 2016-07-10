@@ -12,6 +12,8 @@ opensource code for mDrawBot software: https://github.com/Makeblock-official/mDr
 
 rough draft of instructions on how to use.
 
+![xy_setup](xy_setup.PNG)
+
 Flip switch (what is this switch) to right to manually home
 
 Stop any currently running files
